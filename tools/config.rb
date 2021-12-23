@@ -45,7 +45,7 @@ def main
     opts.on '-y', '--yaml=YAML-FILE(S)', Array, 'YAML file(s) to populate local variables for the template. separated by comma' do |configs|
       configs.each do |config|
         if File.directory?(config)
-          Dir.foreach(config) do |yaml|
+          Dir.open(config).sort.each do |yaml|
             next if yaml == '.' or yaml == '..'
             File.open File.join(config, yaml), 'r' do |f|
               options.yamls.push(YAML::load(f))

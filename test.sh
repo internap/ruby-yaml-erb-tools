@@ -6,12 +6,12 @@ docker build --tag ruby-yaml-erb-tools-test .
 
 error=false
 
-if [ "This is the value value_1 value_2 value_2_common" != "$(docker run -it --rm processor cat /processed/example.txt | tr -d '\r?\n')" ]; then
+if [ "This is the value value_1 value_2 value_2_common" != "$(docker run --rm processor cat /processed/example.txt | tr -d '\r?\n')" ]; then
     echo "Error in config.rb test"
     error=true
 fi
 
-if [ "value" != "$(docker run -it --rm processor cat /processed/key.txt | tr -d '\r?\n')" ]; then
+if [ "value" != "$(docker run --rm processor cat /processed/key.txt | tr -d '\r?\n')" ]; then
     echo "Error in print_key.rb test"
     error=true
 fi
